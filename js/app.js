@@ -1,65 +1,62 @@
 // Datos de prueba
 let egresos = {
-  Renta: 900,
-  Ropa: 400
+    Renta: 900,
+    Ropa: 400
 };
 
 let ingresos = {
-  Quincena: 9000,
-  Venta: 400
+    Quincena: 9000,
+    Venta: 400
 };
 
-// Función totalIngresos con las características indicadas
+// Función totalIngresos
 const totalIngresos = () => {
-  let totalIngreso = 0;
-  // Iterar sobre el objeto ingresos
-  for (let ingreso in ingresos) {
-    totalIngreso += ingresos[ingreso]; // Sumar los valores de ingresos
-  }
-  return totalIngreso;
+    let totalIngreso = 0;
+    for (let ingreso in ingresos) {
+        totalIngreso += ingresos[ingreso];
+    }
+    return totalIngreso;
 };
 
-// Función totalEgresos con las características indicadas
+// Función totalEgresos
 const totalEgresos = () => {
-  let totalEgreso = 0;
-  // Iterar sobre el objeto egresos
-  for (let egreso in egresos) {
-    totalEgreso += egresos[egreso]; // Sumar los valores de egresos
-  }
-  return totalEgreso;
+    let totalEgreso = 0;
+    for (let egreso in egresos) {
+        totalEgreso += egresos[egreso];
+    }
+    return totalEgreso;
 };
 
-// Función cargarCabecero con las características indicadas
+// Función cargarCabecero
 const cargarCabecero = () => {
-  // Calcular presupuesto y porcentaje de egreso
-  const totIng = totalIngresos();
-  const totEgr = totalEgresos();
-  const presupuesto = totIng - totEgr;
-  const porcentajeEgreso = totEgr / totIng;
 
-  // Mostrar resultados en consola con formato
-  console.log("Presupuesto:", formatoMoneda(presupuesto));
-  console.log("Porcentaje de Egreso:", formatoPorcentaje(porcentajeEgreso));
+    const totIng = totalIngresos();
+    const totEgr = totalEgresos();
+    const presupuesto = totIng - totEgr;
+    const porcentajeEgreso = totEgr / totIng;
+
+
+    console.log("Presupuesto:", formatoMoneda(presupuesto));
+    console.log("Porcentaje de Egreso:", formatoPorcentaje(porcentajeEgreso));
 };
 
-// Función para formatear a moneda con dos decimales y el símbolo MXN
+// Función para formatear moneda
 const formatoMoneda = (valor) => {
-  return valor.toLocaleString("es-MX", {
-    style: "currency",
-    currency: "MXN",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  });
+    return valor.toLocaleString("es-MX", {
+        style: "currency",
+        currency: "MXN",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 };
 
 // Función para formatear porcentaje con dos decimales
 const formatoPorcentaje = (valor) => {
-  return (valor).toLocaleString("es-MX", {
-    style: "percent",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  });
+    return (valor).toLocaleString("es-MX", {
+        style: "percent",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 };
 
-// Ejecutar la función cargarCabecero
 cargarCabecero();
