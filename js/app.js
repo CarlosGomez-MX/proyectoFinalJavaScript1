@@ -1,46 +1,44 @@
-// Datos de prueba
-let egresos = {
-    Renta: 900,
-    Ropa: 400
-};
+import { Ingreso } from './Ingreso.js';
+import { Egreso } from './Egreso.js';
 
-let ingresos = {
-    Quincena: 9000,
-    Venta: 400
-};
+let ingresos = [
+    new Ingreso('Salario', 20000),
+    new Ingreso('Venta auto', 50000)
+];
 
-// Función totalIngresos
+let egresos = [
+    new Egreso('Renta', 4000),
+    new Egreso('Ropa', 800)
+];
+
 const totalIngresos = () => {
     let totalIngreso = 0;
-    for (let ingreso in ingresos) {
-        totalIngreso += ingresos[ingreso];
+    for (let ingreso of ingresos) {
+        totalIngreso += ingreso.valor;
     }
     return totalIngreso;
 };
 
-// Función totalEgresos
 const totalEgresos = () => {
     let totalEgreso = 0;
-    for (let egreso in egresos) {
-        totalEgreso += egresos[egreso];
+    for (let egreso of egresos) {
+        totalEgreso += egreso.valor;
     }
     return totalEgreso;
 };
 
-// Función cargarCabecero
 const cargarCabecero = () => {
-
     const totIng = totalIngresos();
     const totEgr = totalEgresos();
     const presupuesto = totIng - totEgr;
     const porcentajeEgreso = totEgr / totIng;
 
-
     console.log("Presupuesto:", formatoMoneda(presupuesto));
     console.log("Porcentaje de Egreso:", formatoPorcentaje(porcentajeEgreso));
+    console.log("Total Ingresos:", formatoMoneda(totIng));
+    console.log("Total Egresos:", formatoMoneda(totEgr));
 };
 
-// Función para formatear moneda
 const formatoMoneda = (valor) => {
     return valor.toLocaleString("es-MX", {
         style: "currency",
@@ -50,7 +48,6 @@ const formatoMoneda = (valor) => {
     });
 };
 
-// Función para formatear porcentaje con dos decimales
 const formatoPorcentaje = (valor) => {
     return (valor).toLocaleString("es-MX", {
         style: "percent",
