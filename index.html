@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,30 +8,30 @@
     <script type="module" src="js/app.js" defer></script>
 </head>
 
-<body>
+<body">
     <div class="cabecero">
         <div class="presupuesto">
             <div class="presupuesto_titulo">
                 Presupuesto disponible
-                <div class="presupuesto_valor">+2,000.00</div>
+                <div class="presupuesto_valor" id="presupuesto">+2,000.00</div>
                 <div class="presupuesto_ingreso limpiarEstilos">
                     <div class="presupuesto_ingreso--texto">Ingresos</div>
                     <div class="derecha limpiarEstilos">
-                        <div class="presupuesto_ingreso--valor">+4,000.00</div>
+                        <div class="presupuesto_ingreso--valor" id="ingresos">+4,000.00</div>
                         <div class="presupuesto_ingreso--porcentaje"> </div>
                     </div>
                 </div>
                 <div class="presupuesto_egreso limpiarEstilos">
                     <div class="presupuesto_egreso--texto">Egresos</div>
                     <div class="derecha limpiarEstilos">
-                        <div class="presupuesto_egreso--valor">-1,900.00</div>
-                        <div class="presupuesto_egreso--porcentaje">%45</div>
+                        <div class="presupuesto_egreso--valor" id="egresos">-1,900.00</div>
+                        <div class="presupuesto_egreso--porcentaje" id="porcentaje">%45</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <form id="forma">
+    <form id="forma" onsubmit="return false;">
         <div class="agregar">
             <div class="agregar_contenedor">
                 <select id="tipo" class="agregar_tipo">
@@ -100,7 +99,7 @@
                         <div class="elemento_porcentaje">9%</div>
                         <div class="elemento_eliminar">
                             <button class="elemento_eliminar--btn">
-                                <ion-icon name="close-circle-outline"></ion_icon>
+                                <ion-icon name="close-circle-outline"></ion-icon>
                             </button>
                         </div>
                     </div>
@@ -110,6 +109,6 @@
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
-</body>
+    </body>
 
 </html>
