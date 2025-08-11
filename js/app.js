@@ -2,13 +2,13 @@ import { Ingreso } from './Ingreso.js';
 import { Egreso } from './Egreso.js';
 
 let ingresos = [
-    new Ingreso('Salario', 2100),
-    new Ingreso('Venta auto', 1500)
+    new Ingreso('Salario', 2200, 0),
+    new Ingreso('Venta Coche', 1500, 1)
 ];
 
 let egresos = [
-    new Egreso('Renta', 900),
-    new Egreso('Ropa', 400)
+    new Egreso('Renta departamento', 900, 0),
+    new Egreso('Ropa', 400, 1)
 ];
 
 const totalIngresos = () => {
@@ -31,7 +31,7 @@ const cargarCabecero = () => {
     const totIng = totalIngresos();
     const totEgr = totalEgresos();
     const presupuesto = totIng - totEgr;
-    const porcentajeEgreso = totEgr / totIng;
+    const porcentajeEgreso = totIng === 0 ? 0 : totEgr / totIng;
 
     document.getElementById('presupuesto').innerHTML = formatoMoneda(presupuesto);
     document.getElementById('porcentaje').innerHTML = formatoPorcentaje(porcentajeEgreso);
@@ -60,7 +60,7 @@ const cargarApp = () => {
     cargarCabecero();
     cargarIngresos();
     cargarEgresos();
-}
+};
 
 const cargarIngresos = () => {
     let ingresosHTML = '';
@@ -91,7 +91,7 @@ const eliminarIngreso = (id) => {
     ingresos.splice(indiceEliminar, 1);
     cargarCabecero();
     cargarIngresos();
-}
+};
 
 const cargarEgresos = () => {
     let egresosHTML = '';
@@ -102,12 +102,13 @@ const cargarEgresos = () => {
 };
 
 const crearEgresoHTML = (egreso) => {
+    const porcentaje = totalEgresos() === 0 ? "0%" : formatoPorcentaje(egreso.valor / totalEgresos());
     return `
     <div class="elemento limpiarEstilos">
         <div class="elemento_descripcion">${egreso.descripcion}</div>
         <div class="derecha limpiarEstilos">
             <div class="elemento_valor">- ${formatoMoneda(egreso.valor)}</div>
-            <div class="elemento_porcentaje">${formatoPorcentaje(egreso.valor / totalEgresos())}</div>
+            <div class="elemento_porcentaje">${porcentaje}</div>
             <div class="elemento_eliminar">
                 <button class="elemento_eliminar--btn" data-id="${egreso.id}">
                     <ion-icon name="close-circle-outline"></ion-icon>
@@ -123,7 +124,7 @@ const eliminarEgreso = (id) => {
     egresos.splice(indiceEliminar, 1);
     cargarCabecero();
     cargarEgresos();
-}
+};
 
 const agregarDato = () => {
     const forma = document.getElementById('forma');
@@ -142,8 +143,14 @@ const agregarDato = () => {
             cargarEgresos();
         }
     }
-}
+};
 
+cargarApp();
+
+
+
+ingresos = [];
+egresos = [];
 cargarApp();
 
 document.querySelector('.agregar_btn').addEventListener('click', agregarDato);
